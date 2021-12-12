@@ -22,16 +22,21 @@ screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 game_is_on = True
 
+def hit_wall(x,y):
+    return (x > 280 or x < -280 or y > 280 or y < -280)
+
 while(game_is_on):
     screen.update() #updates the screen after all segments have moved
     time.sleep(0.1) #slows down the animation of moving 
     snake.move_snake()
-    
-
 #Detect collision with food 
     if snake.head.distance(food) < 15:
         food.refresh()
         scoreboard.inc_score()
+#Detect collision with wall 
+    if hit_wall(snake.head.xcor(), snake.head.ycor()):
+        game_is_on = False
+        scoreboard.game_over()
 
 
 
