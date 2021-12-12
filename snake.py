@@ -14,11 +14,17 @@ class Snake:
 
     def create_snake(self):
         for i in STARTING_POSITION:
-            segment = Turtle("square")
-            segment.color("white")
-            segment.penup()
-            segment.goto(i)
-            self.segments.append(segment)
+            self.add_segment(i)
+
+    def add_segment(self, i):
+        segment = Turtle("square")
+        segment.color("white")
+        segment.penup()
+        segment.goto(i)
+        self.segments.append(segment)   
+
+    def extent(self):
+        self.add_segment(self.segments[-1].position())
 
     def move_snake(self):
         for seg_num in range(len(self.segments)-1, 0, -1):
@@ -26,7 +32,7 @@ class Snake:
             new_y=self.segments[seg_num-1].ycor()
             self.segments[seg_num].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
-    
+        
     def up(self):
         if self.head.heading() != DOWN:
             self.head.setheading(UP)

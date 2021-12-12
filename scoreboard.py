@@ -18,7 +18,10 @@ class Scoreboard(Turtle):
 
     def game_over(self):
         self.goto(0,0)
+        self.clear()
         self.write(f"Game Over", align=ALIGNMENT, font=FONT)
+        self.goto(0,-50)
+        self.write(f"Your score is {self.score}", align=ALIGNMENT, font=FONT)
 
     def inc_score(self):
         self.score += 1
